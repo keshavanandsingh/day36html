@@ -17,6 +17,7 @@
         <div>
             <label for="pwd">password input type: </label>
             <input type="password" id="pwd" name="pwd">
+            <error-output class="pwd-error" for="pwd"></error-output>
         </div>
         <div>
             <label for="email">email input type</label>
@@ -71,6 +72,15 @@
                 emailError.textContent = "";
             else
                 emailError.textContent="Email is invalid";
+        });
+        const pwd = document.getElementById("pwd");
+        const pwdError = document.querySelector(".pwd-error");
+        pwd.addEventListener('input',function(){
+            let pwdRegex = RegExp("^(?=.*\\d)(?=.*[A-Z])(?=.*\\W)(?!.*\\W\\w*\\W)(?!.*\\s).{8,}$");
+            if(pwdRegex.test(pwd.value))
+            pwdError.textContent = "";
+            else
+            pwdError.textContent="Password is invalid";
         });
         const salary = document.querySelector('#salary')
         const output = document.querySelector('.salary-output')
